@@ -92,9 +92,10 @@ def getData(u, t):
 
         return entry
 
-def toGdocs(df):
-    pass
 def toExcel(df):
+
+    # sort by earliest earnings date
+    df = df.sort_values( by=[ 'Earnings Date (* is estimate)' ] )
 
     # add data
     writer = pd.ExcelWriter('test.xlsx', engine='xlsxwriter')
@@ -127,6 +128,7 @@ def toExcel(df):
 
     workbook.close()
     writer.save()
+
 def startIndex(df):
     for x in df.index:
         if df[x] == 'Symbol':
