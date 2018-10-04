@@ -1,14 +1,5 @@
 lxml
-tkinter
-datetime
 numpy
-os
 pandas
-random
-re
 requests
-sys
-time
 xlsxwriter
-
-python >= 3
