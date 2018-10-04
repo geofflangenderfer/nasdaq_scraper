@@ -98,7 +98,7 @@ def toExcel(df):
     df = df.sort_values( by=[ 'Earnings Date (* is estimate)' ] )
 
     # add data
-    writer = pd.ExcelWriter('test.xlsx', engine='xlsxwriter')
+    writer = pd.ExcelWriter('EarningsWatchList.xlsx', engine='xlsxwriter')
 
     df.iloc[:,:4].to_excel(writer, sheet_name='Sheet1', index=False, startrow=17)
 
