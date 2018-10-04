@@ -1,17 +1,16 @@
-#!/home/geoff/miniconda3/bin/python
-import pandas as pd
-import numpy as np
-import re
-import time
-import os
-import random
-import requests
 from lxml import html
-import sys
-import datetime
-import xlsxwriter
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
+import datetime
+import numpy as np
+import os
+import pandas as pd
+import random
+import re
+import requests
+import sys
+import time
+import xlsxwriter
 
 def removeDups(wl):
     "Remove duplicates and return a Series of tickers"
