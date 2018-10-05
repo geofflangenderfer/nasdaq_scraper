@@ -1,7 +1,7 @@
+from datetime import datetime
 from lxml import html
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
-import datetime
 import numpy as np
 import os
 import pandas as pd
@@ -58,6 +58,7 @@ def getData(u, t):
         try:
             date = re.search(r'[A-Z][a-z][a-z] [0-9]?[0-9], [0-9][0-9][0-9][0-9]',
                     text1).group(0)
+            date = datetime.strptime(date, '%b %d, %Y').strftime('%m-%d-%Y')
         except:
             date='NA'
 
@@ -71,8 +72,8 @@ def getData(u, t):
         amc = re.search('after market close', text2)
 
         # estimate or confirmed?
-        if estimate:
-            date += '*'
+#        if estimate:
+#            date += '*'
         # before market open or after market close
         if bmo:
             timing = 'bmo'
@@ -88,14 +89,19 @@ def getData(u, t):
 
 
         entry = [company_name, t.strip(), date, timing,
-                 datetime.datetime.today().strftime("%m-%d-%Y"), u, '--']
+                 datetime.today().strftime("%m-%d-%Y"), u, '--']
 
         return entry
 
 def toExcel(df):
 
     # sort by earliest earnings date
-    df = df.sort_values( by=[ 'Earnings Date (* is estimate)' ] )
+    df = df.sort_values( by= 'Earnings Date (estimate)' )
+    df.reset_index(drop = True)
+
+    # change date format
+    df.iloc[:,2] = pd.to_datetime(df.iloc[:,2], format='%m-%d-%Y', errors = 'coerce')
+    df.iloc[:,2] = df.iloc[:,2].dt.strftime(date_format='%b %d, %Y')
 
     # add data
     writer = pd.ExcelWriter('EarningsWatchList.xlsx', engine='xlsxwriter')
@@ -167,7 +173,7 @@ if __name__  == '__main__':
     symbols = findSymbols()
     tickers = removeDups(symbols)
     data = pd.DataFrame(columns = ['Company Name', 'Symbol',
-                                   'Earnings Date (* is estimate)',
+                                   'Earnings Date (estimate)',
                                    'Before Market Open/After Market Close', 'Updated',
                                    'URL', "Errors"])
 
@@ -179,11 +185,11 @@ if __name__  == '__main__':
             raw_data = getData(url, ticker)
         except Exception as e:
             raw_data = [ticker.strip(),ticker.strip(),'Failed',ticker.strip(),
-                        datetime.datetime.today().strftime("%m-%d-%Y"),
+                        datetime.today().strftime("%m-%d-%Y"),
                         ticker.strip(), url, e]
         data.loc[i] = raw_data
 
-        time.sleep(random.randint(1,3))
         print(data.iloc[:,:4])
+        time.sleep(random.randint(1,3))
 
     toExcel(data)
