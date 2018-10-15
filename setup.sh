@@ -15,6 +15,6 @@ fi
 
 mkdir ~/Desktop/nasdaq_scraper
 
-cp ~/nasdaq_scraper/nasdaq_scraper.py \
+cp ~/nasdaq_scraper/nasdaq_scraper \
    ~/nasdaq_scraper/EarningsWatchList.xlsx \
    ~/Desktop/nasdaq_scraper

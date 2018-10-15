@@ -144,7 +144,8 @@ def startIndex(df):
     return x
 
 def findSymbols():
-    excelFile = "EarningsWatchList.xlsx"
+
+    excelFile = "Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
 
     try:
         # symbols in middle of file
@@ -157,9 +158,11 @@ def findSymbols():
             # prompt for files; symbols in middle 
             print("Couldn't find symbols in %s " %excelFile)
             Tk().withdraw()
-            print("what excel file has the list of symbols needed?")
+            print("Open the file that  has the list of symbols needed")
             symbolsFile= askopenfilename()
-
+            print('-'*30)
+            print(symbolsFile)
+            print('-'*30)
             symbols = pd.read_excel(symbolsFile, header = None)
             symbols = symbols.iloc[:,1]
             index = startIndex(symbols)
