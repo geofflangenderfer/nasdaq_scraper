@@ -17,4 +17,5 @@ mkdir ~/Desktop/nasdaq_scraper
 
 cp ~/nasdaq_scraper/nasdaq_scraper \
    ~/nasdaq_scraper/EarningsWatchList.xlsx \
+   ~/nasdaq_scraper/nav_trad.png \
    ~/Desktop/nasdaq_scraper
