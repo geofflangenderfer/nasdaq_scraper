@@ -12,6 +12,7 @@ import requests
 import sys
 import time
 import xlsxwriter
+import urllib3
 
 def removeDups(wl):
     "Remove duplicates and return a Series of tickers"
@@ -174,6 +175,8 @@ def findSymbols():
     return symbols
 
 if __name__  == '__main__':
+
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     symbols = findSymbols()
     tickers = removeDups(symbols)
