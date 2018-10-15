@@ -119,12 +119,13 @@ def toExcel(df):
 
     # nav trading image
     try:
-        worksheet.insert_image('A1', 'nav_trad.png', {'x_scale': 0.3, 'y_scale': 0.3})
+        worksheet.insert_image('A1', 'Desktop/nasdaq_scraper/nav_trad.png', {'x_scale': 0.3, 'y_scale': 0.3})
     except:
         print("Couldn't find nav_trad.png. Show me where it is")
         Tk.withdraw()
         nav_trad = askopenfilename()
 
+        worksheet.insert_image('A1', nav_trad , {'x_scale': 0.3, 'y_scale': 0.3})
     # instructions 
     worksheet.write('A9', "Below are the estimated earnings announcements. Dates and times are subject to change. Please check the company's website for confirmation.")
     worksheet.write('A10', "This sheet will be updated weekly.")
