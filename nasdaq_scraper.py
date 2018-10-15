@@ -118,6 +118,7 @@ def toExcel(df):
     worksheet.set_column('D:D', 42)
 
     # nav trading image
+    # this block doesn't catch the UserWarning raised when it can't find nav_trad.png. Need to fix. 
     try:
 
         worksheet.insert_image('A1', 'nav_trad.png', {'x_scale': 0.3, 'y_scale': 0.3})
