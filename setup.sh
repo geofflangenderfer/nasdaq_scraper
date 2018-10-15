@@ -34,7 +34,9 @@ fi
 
 mkdir ~/Desktop/nasdaq_scraper
 
-cp ~/nasdaq_scraper/nasdaq_scraper \
+cp ~/nasdaq_scraper/nasdaq_scraper.py \
    ~/nasdaq_scraper/EarningsWatchList.xlsx \
    ~/nasdaq_scraper/nav_trad.png \
    ~/Desktop/nasdaq_scraper
+
+mv ~/Desktop/nasdaq_scraper/nasdaq_scraper.py ~/Desktop/nasdaq_scraper/nasdaq_scraper.command
