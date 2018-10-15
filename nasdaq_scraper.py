@@ -105,7 +105,8 @@ def toExcel(df):
     df.iloc[:,2] = df.iloc[:,2].dt.strftime(date_format='%b %d, %Y')
 
     # add data
-    writer = pd.ExcelWriter('EarningsWatchList.xlsx', engine='xlsxwriter')
+    filePath = os.path.abspath("~/Desktop/nasdaq_scraper/EarningsWatchList.xlsx")
+    writer = pd.ExcelWriter(filePath, engine='xlsxwriter')
 
     df.iloc[:,:4].to_excel(writer, sheet_name='Sheet1', index=False, startrow=17)
 
@@ -118,8 +119,10 @@ def toExcel(df):
     worksheet.set_column('D:D', 42)
 
     # nav trading image
+    imageFile = os.path.abspath("~/nasdaq_scraper/nav_trad.png")
     try:
-        worksheet.insert_image('A1', 'Desktop/nasdaq_scraper/nav_trad.png', {'x_scale': 0.3, 'y_scale': 0.3})
+
+        worksheet.insert_image('A1', imageFile , {'x_scale': 0.3, 'y_scale': 0.3})
     except:
         print("Couldn't find nav_trad.png. Show me where it is")
         Tk.withdraw()
@@ -146,7 +149,7 @@ def startIndex(df):
 
 def findSymbols():
 
-    excelFile = "Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
+    excelFile = os.path.abspath("~/Desktop/nasdaq_scraper/EarningsWatchList.xlsx")
 
     try:
         # symbols in middle of file
