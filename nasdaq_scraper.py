@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from datetime import datetime
 from lxml import html
+from os.path import expanduser
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import numpy as np
@@ -106,9 +107,9 @@ def toExcel(df):
     df.iloc[:,2] = df.iloc[:,2].dt.strftime(date_format='%b %d, %Y')
 
     # add data
-    writer = pd.ExcelWriter(
-        "/Users/roberthe/Desktop/nasdaq_scraper/EarningsWatchList.xlsx", 
-        engine='xlsxwriter')
+    home = expanduser("~")
+    file_path = home+"/Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
+    writer = pd.ExcelWriter( file_path, engine='xlsxwriter')
 
 
 
@@ -126,10 +127,11 @@ def toExcel(df):
     # nav trading image
     # this block doesn't catch the UserWarning raised when it can't find nav_trad.png. Need to fix. 
     try:
-
+        home = expanduser("~")
+        image_path = home + "/Desktop/nasdaq_scraper/nav_trad.png"
         worksheet.insert_image(
                 "A1",
-                "/Users/roberthe/Desktop/nasdaq_scraper/nav_trad.png",
+                image_path,
                 {'x_scale': 0.3, 'y_scale': 0.3})
     except:
         print("Couldn't find nav_trad.png. Show me where it is")
@@ -156,8 +158,9 @@ def startIndex(df):
     return x
 
 def findSymbols():
-
-    excelFile = "/Users/roberthe/Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
+   
+    home = expanduser("~")
+    excelFile = home + "/Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
     try:
         # symbols in middle of file
         symbols = pd.read_excel(excelFile, header = None)
