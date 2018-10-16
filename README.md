@@ -1,7 +1,7 @@
 To update the list of tickers, open EarningsWatchList.xlsx and delete a row you no longer want or add a
 ticker at the end of the Symbols column
 
-To install:
+To install on Mac:
 * git clone as normal if you know how
 * otherwise, download setup.sh
 * open the terminal on your machine
