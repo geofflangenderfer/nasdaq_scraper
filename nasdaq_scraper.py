@@ -106,7 +106,12 @@ def toExcel(df):
     df.iloc[:,2] = df.iloc[:,2].dt.strftime(date_format='%b %d, %Y')
 
     # add data
-    writer = pd.ExcelWriter("EarningsWatchList.xlsx", engine='xlsxwriter')
+    writer = pd.ExcelWriter(
+        "/Users/roberthe/Desktop/nasdaq_scraper/EarningsWatchList.xlsx", 
+        engine='xlsxwriter')
+
+
+
 
     df.iloc[:,:4].to_excel(writer, sheet_name='Sheet1', index=False, startrow=17)
 
@@ -122,7 +127,10 @@ def toExcel(df):
     # this block doesn't catch the UserWarning raised when it can't find nav_trad.png. Need to fix. 
     try:
 
-        worksheet.insert_image('A1', 'nav_trad.png', {'x_scale': 0.3, 'y_scale': 0.3})
+        worksheet.insert_image(
+                "A1",
+                "/Users/roberthe/Desktop/nasdaq_scraper/nav_trad.png",
+                {'x_scale': 0.3, 'y_scale': 0.3})
     except:
         print("Couldn't find nav_trad.png. Show me where it is")
         Tk.withdraw()
@@ -149,8 +157,7 @@ def startIndex(df):
 
 def findSymbols():
 
-    excelFile = "EarningsWatchList.xlsx"
-
+    excelFile = "/Users/roberthe/Desktop/nasdaq_scraper/EarningsWatchList.xlsx"
     try:
         # symbols in middle of file
         symbols = pd.read_excel(excelFile, header = None)
