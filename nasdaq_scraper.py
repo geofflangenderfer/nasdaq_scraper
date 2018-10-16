@@ -11,8 +11,8 @@ import re
 import requests
 import sys
 import time
-import xlsxwriter
 import urllib3
+import xlsxwriter
 
 def removeDups(wl):
     "Remove duplicates and return a Series of tickers"
