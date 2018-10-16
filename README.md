@@ -5,6 +5,6 @@ To install:
 * git clone as normal if you know how
 * otherwise, download setup.sh
 * open the terminal on your machine
-* type bash Downloads/setup.sh
+* type the following command: bash Downloads/setup.sh
 * this does a lot of the heavy-lifting, and it should make things easier if you
 don't normally use the terminal. 
